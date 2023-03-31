@@ -1,12 +1,13 @@
 #!/bin/bash
 cd ~
 
-# edge (add apt source)
+# Edge (add apt source)
 echo "deb [arch=amd64] http://packages.microsoft.com/repos/edge/ stable main" \
   | sudo tee "/etc/apt/sources.list.d/microsoft-edge-dev.list"
 
-# firefox developer edition (direct download)
+# Firefox Developer Edition (direct download)
 curl -L "https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=zh-TW" | tar -xj
+mkdir -p .local/share/applications
 echo "[Desktop Entry]
 Name=Firefox Developer Edition
 Type=Application
@@ -21,8 +22,7 @@ sudo apt install -y code microsoft-edge-dev google-chrome-stable gnome-keyring f
 git config --global user.name "inMyHeart"
 git config --global user.email "inMyHeart@sample.com"
 
-
-# set firefox as default application
+# set Firefox Developer Edition as default application
 mkdir -p .local/share/xfce4/helpers
 echo "[Desktop Entry]
 Name=Firefox Developer Edition
@@ -33,3 +33,10 @@ X-XFCE-Commands=$HOME/firefox/firefox
 X-XFCE-CommandsWithParameter=$HOME/firefox/firefox "%s"
 " > .local/share/xfce4/helpers/firefox-developer-edition.desktop
 echo "WebBrowser=firefox-developer-edition" > .config/xfce4/helpers.rc
+mimeTypes=(text/html text/xml application/xhtml+xml application/xml \
+  application/rss+xml application/rdf+xml application/x-xpinstall application/pdf application/x-wwf \
+  image/gif mime image/jpeg image/png image/webp video/webm \
+  x-scheme-handler/http x-scheme-handler/https x-scheme-handler/ftp x-scheme-handler/chrome)
+for mimeType in ${mimeTypes[@]}; do
+  gio mime $mimeType firefox-developer-edition.desktop
+done
