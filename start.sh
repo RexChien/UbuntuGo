@@ -15,8 +15,13 @@ Exec=$HOME/firefox/firefox
 Icon=$HOME/firefox/browser/chrome/icons/default/default128.png
 Categories=Network;" > .local/share/applications/firefox-developer-edition.desktop
 
+# .net8
+wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+
 sudo apt update
-sudo apt install -y code microsoft-edge-dev google-chrome-stable gnome-keyring flameshot fonts-noto git
+sudo apt install -y code microsoft-edge-dev google-chrome-stable gnome-keyring flameshot fonts-noto git dotnet-sdk-6.0 dotnet-sdk-8.0 powershell
 
 # config git
 git config --global user.name "inMyHeart"
