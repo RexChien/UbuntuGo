@@ -21,7 +21,7 @@ sudo dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
 
 sudo apt update
-sudo apt install -y code microsoft-edge-dev google-chrome-stable gnome-keyring flameshot fonts-noto git dotnet-sdk-6.0 dotnet-sdk-8.0 powershell
+sudo apt install -y code microsoft-edge-dev google-chrome-stable gnome-keyring flameshot fonts-noto git dotnet-sdk-6.0 powershell
 
 # config git
 git config --global user.name "inMyHeart"
